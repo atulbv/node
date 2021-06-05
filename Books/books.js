@@ -90,7 +90,7 @@ app.get("/book/:id", (req,res) => {
   }).catch((err) => console.log(err));
    
 })
-
-app.listen(4200,()=> {
+const port = process.env.port || 4200;
+app.listen(port,()=> {
 console.log("book service is running");
 })

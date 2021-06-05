@@ -78,7 +78,7 @@ app.get("/order/:id", (req,res) => {
    
 })
 
-
-app.listen(4201,()=> {
+const port = process.env.port || 4201;
+app.listen(port,()=> {
     console.log("book service is running");
     })
