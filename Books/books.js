@@ -67,13 +67,13 @@ app.post("/book",  (req,res)=>{
 
 })
 
-app.get("/book", (req,res) => {
+app.get("/", (req,res) => {
 
-//  console.log("check for get method..")
-  Book.find().then((books)=> {
-   // console.log(books)
-   res.json(books)
-  }).catch((err) => { console.log(err)})
+console.log("Welcome to atul book store from console.")
+  // Book.find().then((books)=> {
+  //  // console.log(books)
+  //  res.json(books)
+  // }).catch((err) => { console.log(err)})
    res.send("Welcome to atul book store");
 })
 
