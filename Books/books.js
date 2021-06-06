@@ -41,7 +41,7 @@ mongoose.connect(CloudDBuri,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 
 app.get("/", (req,res) => { 
-  res.render('https://' + req.get('Host') + req.url)
+  res.render('http://' + req.get('Host') + req.url)
  // res.render("index")
   //res.send("get book service");
 })
