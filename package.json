@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node Books/books.js -e js,hbs",
-    "dev": "nodemon Books/books.js -e js,hbs"
+    "start": "NODE_ENV=production node Books/books.js",
+    "start-dev": "nodemon Books/books.js -e js,hbs"
   },
   "repository": {
     "type": "git",
