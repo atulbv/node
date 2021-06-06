@@ -46,7 +46,7 @@ app.get("/", (req,res) => {
 
 app.get("/addBook", (req,res) => {
 
-    res.render("index")
+    res.render('https://' + req.get('Host') + "index")
  
 })
 
