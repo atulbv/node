@@ -34,19 +34,22 @@ const Book = mongoose.model("Book")
 const CloudDBuri = "mongodb+srv://atul:Atulpostman@15@cluster0.vzqih.mongodb.net/bookService_atul?retryWrites=true&w=majority";
 const localDBUri = "mongodb://localhost:27017/AtulBookStore";
 mongoose.connect(CloudDBuri,{ useNewUrlParser: true, useUnifiedTopology: true }).then(() =>{
-    console.log("mongoose DB is connected..");   
+    console.log("mongoose DB is connected..");  
+    
    
 }).catch((err) => console.log(err));
 
 
 app.get("/", (req,res) => { 
-  res.render("index")
+  res.render('https://' + req.get('Host') + req.url)
+ // res.render("index")
   //res.send("get book service");
 })
 
 app.get("/addBook", (req,res) => {
-
-    res.render('https://' + req.get('Host') + "index")
+  // console.log(req.get('Host') );
+  // console.log(req.url); 
+    //res.render('https://' + req.get('Host') + "index")
  
 })
 
