@@ -40,7 +40,8 @@ mongoose.connect(CloudDBuri,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 
 app.get("/", (req,res) => {
-  res.render("index")
+  //res.render("index")
+  res.send("get book service");
 })
 
 app.get("/addBook", (req,res) => {
