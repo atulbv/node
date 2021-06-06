@@ -43,7 +43,7 @@ mongoose.connect(CloudDBuri,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 app.get("/", (req,res) => { 
  
- res.render("index");
+ res.render("http://" + req.get('Host') +"index");
 
 })
 
