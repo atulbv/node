@@ -5,6 +5,7 @@ const path = require("path");
 const hbs = require('hbs');
 'use strict'
 const awsServerlessExpressMiddleware = require("aws-serverless-express/middleware")
+const router = express.Router()
 
 app.use(
     express.urlencoded({
@@ -14,7 +15,8 @@ app.use(
 
 app.use(express.json())
 app.use(bodyparser.json());
-app.use(awsServerlessExpressMiddleware.eventContext())
+//app.use(awsServerlessExpressMiddleware.eventContext())
+router.use(awsServerlessExpressMiddleware.eventContext())
 
 const publicPath = path.join(__dirname, '../public');
 
@@ -42,14 +44,19 @@ mongoose.connect(CloudDBuri,{ useNewUrlParser: true, useUnifiedTopology: true })
    
 }).catch((err) => console.log(err));
 
+router.get('/', (req, res) => {
+  res.render('index', {
+    apiUrl: req.apiGateway ? `https://${req.apiGateway.event.headers.Host}/${req.apiGateway.event.requestContext.stage}` : 'http://localhost:4200'
+  })
+})
 
-app.get("/", (req,res) => { 
+// app.get("/", (req,res) => { 
  
- //res.render("index");
- res.render('index', {
-  apiUrl: req.apiGateway ? `https://${req.apiGateway.event.headers.Host}/${req.apiGateway.event.requestContext.stage}` : 'http://localhost:4200'
-})
-})
+//  //res.render("index");
+//  res.render('index', {
+//   apiUrl: req.apiGateway ? `https://${req.apiGateway.event.headers.Host}/${req.apiGateway.event.requestContext.stage}` : 'http://localhost:4200'
+// })
+// })
 
 app.get("/addBook", (req,res) => {
   // console.log(req.get('Host') );
@@ -100,7 +107,7 @@ app.post("/addBook",  (req,res)=>{
 
 })
 
-
+app.use('/', router)
 const port = process.env.port || 4200;
 app.listen(port,()=> {
 console.log("book service is running");
