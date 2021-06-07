@@ -45,10 +45,10 @@ mongoose.connect(CloudDBuri,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 app.get('/', (req, res) => {
   //res.send("Demo with Nilesh")
-  // res.render('index.hbs', {
-  //   apiUrl: req.apiGateway ? `https://${req.apiGateway.event.headers.Host}` : 'http://localhost:4200'
-  // })
-  res.send(req.apiGateway.event.headers.Host + "" + req.apiGateway.event.headers.Host );
+  res.render('index', {
+    apiUrl: req.apiGateway ? `https://${req.apiGateway.event.headers.Host}/${req.apiGateway.event.requestContext.stage}` : 'http://localhost:4200'
+  })
+ // res.send(req.apiGateway.event.headers.Host + "" + req.apiGateway.event.headers.Host );
   
 })
 
@@ -106,3 +106,5 @@ const port = process.env.port || 4200;
 app.listen(port,()=> {
 console.log("book service is running");
 })
+
+module.exports = app
