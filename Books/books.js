@@ -45,7 +45,7 @@ mongoose.connect(CloudDBuri,{ useNewUrlParser: true, useUnifiedTopology: true })
 }).catch((err) => console.log(err));
 
 app.get('/', (req, res) => {
-  res.send("Welcome to atul store")
+  res.send("Demo with Nilesh")
   // res.render('index', {
   //   apiUrl: req.apiGateway ? `https://${req.apiGateway.event.headers.Host}` : 'http://localhost:4200'
   // })
