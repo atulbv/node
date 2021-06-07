@@ -46,7 +46,7 @@ mongoose.connect(CloudDBuri,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 router.get('/', (req, res) => {
   res.render('index', {
-    apiUrl: req.apiGateway ? `https://${req.apiGateway.event.headers.Host}/${req.apiGateway.event.requestContext.stage}` : 'http://localhost:4200'
+    apiUrl: req.apiGateway ? `https://${req.apiGateway.event.headers.Host}` : 'http://localhost:4200'
   })
 })
 
