@@ -1,9 +1,10 @@
-//load express
 const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
 const path = require("path");
 const hbs = require('hbs');
+'use strict'
+const awsServerlessExpressMiddleware = require("aws-serverless-express/middleware")
 
 app.use(
     express.urlencoded({
@@ -13,6 +14,8 @@ app.use(
 
 app.use(express.json())
 app.use(bodyparser.json());
+app.use(awsServerlessExpressMiddleware.eventContext())
+
 const publicPath = path.join(__dirname, '../public');
 
 const template_path= path.join(__dirname,"../Views")
@@ -42,8 +45,10 @@ mongoose.connect(CloudDBuri,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 app.get("/", (req,res) => { 
  
- res.render("index");
-
+ //res.render("index");
+ res.render('index', {
+  apiUrl: req.apiGateway ? `https://${req.apiGateway.event.headers.Host}/${req.apiGateway.event.requestContext.stage}` : 'http://localhost:4200'
+})
 })
 
 app.get("/addBook", (req,res) => {
