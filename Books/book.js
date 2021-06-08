@@ -1,22 +1,20 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-mongoose.model("Book",{
-
-title:{
+mongoose.model('Book', {
+  title: {
     type: String,
-    require : true
-}, 
-author:{
+    require: true,
+  },
+  author: {
     type: String,
-    require : true
-},
-numberPages: {
+    require: true,
+  },
+  numberPages: {
     type: Number,
-    require : false
-},
-publisher: {
+    require: false,
+  },
+  publisher: {
     type: String,
-    require : true
-}
-
+    require: true,
+  },
 });
