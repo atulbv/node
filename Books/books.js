@@ -44,7 +44,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.get('/', (req, res) => {
-  res.send('Welcome to AV Store');
+  res.send('Demo with Manu');
   // res.render('index', {
   //   apiUrl: req.apiGateway
   //     ? `https://${req.apiGateway.event.headers.Host}/${req.apiGateway.event.requestContext.stage}`
