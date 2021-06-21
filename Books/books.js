@@ -3,8 +3,9 @@ const app = express();
 const bodyparser = require('body-parser');
 const path = require('path');
 const hbs = require('hbs');
-// ('use strict');
-// const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
+const dotenv = require('dotenv');
+
+dotenv.config({ path: './config.env' });
 
 app.use(
   express.urlencoded({
@@ -14,8 +15,6 @@ app.use(
 
 app.use(express.json());
 app.use(bodyparser.json());
-
-// app.use(awsServerlessExpressMiddleware.eventContext());
 
 const publicPath = path.join(__dirname, '../public');
 
@@ -33,9 +32,8 @@ app.set('Views', template_path);
 require('./book');
 
 const Book = mongoose.model('Book');
-const CloudDBuri =
-  'mongodb+srv://atul:Atulpostman@15@cluster0.vzqih.mongodb.net/bookService_atul?retryWrites=true&w=majority';
-const localDBUri = 'mongodb://localhost:27017/AtulBookStore';
+const CloudDBuri = process.env.DATABASE;
+
 mongoose
   .connect(CloudDBuri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
