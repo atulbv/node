@@ -42,7 +42,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.get('/', (req, res) => {
-  res.send('Demo with Manu');
+  res.send('Demo done');
   // res.render('index', {
   //   apiUrl: req.apiGateway
   //     ? `https://${req.apiGateway.event.headers.Host}/${req.apiGateway.event.requestContext.stage}`
